@@ -1,0 +1,698 @@
+{
+  "abi": [
+    {
+      "type": "constructor",
+      "inputs": [
+        { "name": "_settlement", "type": "address", "internalType": "address" }
+      ],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "TASK_EXPIRY",
+      "inputs": [],
+      "outputs": [{ "name": "", "type": "uint32", "internalType": "uint32" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "createTask",
+      "inputs": [
+        { "name": "chainId", "type": "uint256", "internalType": "uint256" },
+        { "name": "collection", "type": "address", "internalType": "address" },
+        { "name": "tokenId", "type": "uint256", "internalType": "uint256" },
+        { "name": "owner", "type": "address", "internalType": "address" },
+        { "name": "checkedBlock", "type": "uint64", "internalType": "uint64" },
+        {
+          "name": "standard",
+          "type": "uint8",
+          "internalType": "enum NftOwnershipTask.Standard"
+        }
+      ],
+      "outputs": [
+        { "name": "taskId", "type": "bytes32", "internalType": "bytes32" }
+      ],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "getTaskStatus",
+      "inputs": [
+        { "name": "taskId", "type": "bytes32", "internalType": "bytes32" }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8",
+          "internalType": "enum NftOwnershipTask.TaskStatus"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "nonce",
+      "inputs": [],
+      "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "respondTask",
+      "inputs": [
+        { "name": "taskId", "type": "bytes32", "internalType": "bytes32" },
+        { "name": "payload", "type": "bytes", "internalType": "bytes" },
+        { "name": "epoch", "type": "uint48", "internalType": "uint48" },
+        { "name": "proof", "type": "bytes", "internalType": "bytes" }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "responses",
+      "inputs": [{ "name": "", "type": "bytes32", "internalType": "bytes32" }],
+      "outputs": [
+        { "name": "answeredAt", "type": "uint48", "internalType": "uint48" },
+        { "name": "isOwner", "type": "bool", "internalType": "bool" },
+        {
+          "name": "ownerAtBlock",
+          "type": "address",
+          "internalType": "address"
+        },
+        { "name": "observedBlock", "type": "uint64", "internalType": "uint64" }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "settlement",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract ISettlement"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "tasks",
+      "inputs": [{ "name": "", "type": "bytes32", "internalType": "bytes32" }],
+      "outputs": [
+        { "name": "chainId", "type": "uint256", "internalType": "uint256" },
+        { "name": "collection", "type": "address", "internalType": "address" },
+        { "name": "tokenId", "type": "uint256", "internalType": "uint256" },
+        { "name": "owner", "type": "address", "internalType": "address" },
+        { "name": "checkedBlock", "type": "uint64", "internalType": "uint64" },
+        {
+          "name": "standard",
+          "type": "uint8",
+          "internalType": "enum NftOwnershipTask.Standard"
+        },
+        { "name": "nonce", "type": "uint256", "internalType": "uint256" },
+        { "name": "createdAt", "type": "uint48", "internalType": "uint48" }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "event",
+      "name": "CreateTask",
+      "inputs": [
+        {
+          "name": "taskId",
+          "type": "bytes32",
+          "indexed": true,
+          "internalType": "bytes32"
+        },
+        {
+          "name": "req",
+          "type": "tuple",
+          "indexed": false,
+          "internalType": "struct NftOwnershipTask.Request",
+          "components": [
+            { "name": "chainId", "type": "uint256", "internalType": "uint256" },
+            {
+              "name": "collection",
+              "type": "address",
+              "internalType": "address"
+            },
+            { "name": "tokenId", "type": "uint256", "internalType": "uint256" },
+            { "name": "owner", "type": "address", "internalType": "address" },
+            {
+              "name": "checkedBlock",
+              "type": "uint64",
+              "internalType": "uint64"
+            },
+            {
+              "name": "standard",
+              "type": "uint8",
+              "internalType": "enum NftOwnershipTask.Standard"
+            },
+            { "name": "nonce", "type": "uint256", "internalType": "uint256" },
+            { "name": "createdAt", "type": "uint48", "internalType": "uint48" }
+          ]
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "RespondTask",
+      "inputs": [
+        {
+          "name": "taskId",
+          "type": "bytes32",
+          "indexed": true,
+          "internalType": "bytes32"
+        },
+        {
+          "name": "response",
+          "type": "tuple",
+          "indexed": false,
+          "internalType": "struct NftOwnershipTask.Response",
+          "components": [
+            {
+              "name": "answeredAt",
+              "type": "uint48",
+              "internalType": "uint48"
+            },
+            { "name": "isOwner", "type": "bool", "internalType": "bool" },
+            {
+              "name": "ownerAtBlock",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "observedBlock",
+              "type": "uint64",
+              "internalType": "uint64"
+            }
+          ]
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "TaskCreated",
+      "inputs": [
+        {
+          "name": "taskId",
+          "type": "bytes32",
+          "indexed": true,
+          "internalType": "bytes32"
+        },
+        {
+          "name": "req",
+          "type": "tuple",
+          "indexed": false,
+          "internalType": "struct NftOwnershipTask.Request",
+          "components": [
+            { "name": "chainId", "type": "uint256", "internalType": "uint256" },
+            {
+              "name": "collection",
+              "type": "address",
+              "internalType": "address"
+            },
+            { "name": "tokenId", "type": "uint256", "internalType": "uint256" },
+            { "name": "owner", "type": "address", "internalType": "address" },
+            {
+              "name": "checkedBlock",
+              "type": "uint64",
+              "internalType": "uint64"
+            },
+            {
+              "name": "standard",
+              "type": "uint8",
+              "internalType": "enum NftOwnershipTask.Standard"
+            },
+            { "name": "nonce", "type": "uint256", "internalType": "uint256" },
+            { "name": "createdAt", "type": "uint48", "internalType": "uint48" }
+          ]
+        }
+      ],
+      "anonymous": false
+    },
+    { "type": "error", "name": "AlreadyResponded", "inputs": [] },
+    { "type": "error", "name": "InvalidQuorumSignature", "inputs": [] },
+    { "type": "error", "name": "InvalidVerifyingEpoch", "inputs": [] }
+  ],
+  "bytecode": {
+    "object": "0x608034606f57601f610bc238819003918201601f19168301916001600160401b03831184841017607357808492602094604052833981010312606f57516001600160a01b03811690819003606f575f80546001600160a01b031916919091179055604051610b3a90816100888239f35b5f80fd5b634e487b7160e01b5f52604160045260245ffdfe6080806040526004361015610012575f80fd5b5f3560e01c908163240697b614610940575080632bf6cc79146109115780634017c17f146106ac578063511606301461068557806372164a6c1461061f578063affed0e014610602578063c2ea2bf3146101185763e579f50014610074575f80fd5b34610114576020366003190112610114576004355f52600260205261010060405f2080549060018060a01b0360018201541690610108600282015460038301549065ffffffffffff6005600486015495015416946040519687526020870152604086015260018060a01b03811660608601526001600160401b038160a01c16608086015260ff60a086019160e01c16610987565b60c083015260e0820152f35b5f80fd5b34610114576080366003190112610114576004356024356001600160401b0381116101145761014b90369060040161095a565b906044359165ffffffffffff8316809303610114576064356001600160401b0381116101145761017f90369060040161095a565b855f52600360205265ffffffffffff60405f2054166105f3575f546001600160a01b03166001860165ffffffffffff81116105df5765ffffffffffff60405191635485b54960e01b8352166004820152602081602481855afa9081156104ee575f9161059e575b5065ffffffffffff811615159081610582575b5061057357604051602081019088825260408082015261022f8161022160608201898b610ac0565b03601f198101835282610a23565b5190206040519060208201526020815261024a604082610a23565b60405163721bc76960e11b81526004810188905296602088602481865afa9788156104ee575f98610535575b506040516303b0d7b160e31b81526004810182905294602086602481875afa9586156104ee575f966104f9575b509161032c6102f89260ff959461031560209c8d99604051936102c68c86610a23565b5f8552601f198c01368d87013760405163acaa226960e01b815260c060048201529c8d9b8c9a8b9a60c48c0190610ae0565b941660248a01526044890152878303600319016064890152610ac0565b9160848501526003198483030160a4850152610ae0565b03915afa9081156104ee575f916104b8575b50156104a95781606091810103126101145780359081151580920361011457828101356001600160a01b03811691908290036101145760400135906001600160401b038216809203610114576040519160808301918383106001600160401b03841117610495577f0bf426223476d58f384d98805bf2570c769b82ec6e2ccda8886bbf5e3c09f98e956080956001600160401b039460405265ffffffffffff421686528186019081526040860192835260608601938452885f5260038252600165ffffffffffff60405f209751169665ffffffffffff881665ffffffffffff1982541617815582511515815466ff0000000000006701000000000000008560d81b03885160381b169260301b169065ffffffffffff64ffffffffff60d81b011617178155018585511686198254161790556040519586525115159085015260018060a01b03905116604084015251166060820152a2005b634e487b7160e01b5f52604160045260245ffd5b630d08ee4760e31b5f5260045ffd5b90508381813d83116104e7575b6104cf8183610a23565b8101031261011457518015158103610114578561033e565b503d6104c5565b6040513d5f823e3d90fd5b93929095506020843d60201161052d575b8161051760209383610a23565b810103126101145792519491929161032c6102a3565b3d915061050a565b9097506020813d60201161056b575b8161055160209383610a23565b81010312610114575160ff81168103610114579689610276565b3d9150610544565b633ec1610f60e11b5f5260045ffd5b65ffffffffffff915061059490610994565b16421015886101f9565b90506020813d6020116105d7575b816105b960209383610a23565b81010312610114575165ffffffffffff8116810361011457886101e6565b3d91506105ac565b634e487b7160e01b5f52601160045260245ffd5b63251aba6960e11b5f5260045ffd5b34610114575f366003190112610114576020600154604051908152f35b34610114576020366003190112610114576004355f526003602052608060405f206001600160401b0360018254920154166040519165ffffffffffff8116835260ff8160301c161515602084015260018060a01b039060381c1660408301526060820152f35b34610114575f366003190112610114575f546040516001600160a01b039091168152602090f35b346101145760c0366003190112610114576004356024356001600160a01b03811690819003610114576044356064356001600160a01b0381169081900361011457608435936001600160401b0385168095036101145760a43594600286101561011457600154915f1983146105df57600183016001556040519161010083018381106001600160401b03821117610495576040528183526020830191878352604084019787895260608501958787526107b68b608088019580875260a089019d8e5260c089019a848c5260e08a019c8d65ffffffffffff42169052604051966020880198468a5260408901526060880152608087015260a086015260c085015260e0840190610987565b61010082015261010081526107cd61012082610a23565b5190205f8181526002602081905260409091208551815593516001850180546001600160a01b03199081166001600160a01b03938416179091559951858301559551600385018054909a1696169590951780895591519851989097949091908910156108fd5765ffffffffffff88977f7a37329df301808b8ac3daca67b67243924444f5a64e02bb10a901c69579d63f976108f297839560059560209e60ff60e01b9060e01b16916001600160401b0360a01b9060a01b169068ffffffffffffffffff60a01b19161717905551600486015551169201911665ffffffffffff19825416179055837f313874bd5b1cda73bb443bd62cf625061ba13ebe53f553359ff50ce05cacc5a8604051806108e38582610a44565b0390a260405191829182610a44565b0390a2604051908152f35b634e487b7160e01b5f52602160045260245ffd5b346101145760203660031901126101145761092d6004356109b1565b60405160048210156108fd576020918152f35b34610114575f3660031901126101145780612ee060209252f35b9181601f84011215610114578235916001600160401b038311610114576020838186019501011161011457565b9060028210156108fd5752565b65ffffffffffff612ee09116019065ffffffffffff82116105df57565b805f52600360205265ffffffffffff60405f205416610a1d57805f52600260205265ffffffffffff600560405f2001541615610a17575f52600260205265ffffffffffff610a0781600560405f20015416610994565b164211610a12575f90565b600290565b50600390565b50600190565b90601f801991011681019081106001600160401b0382111761049557604052565b91909160e065ffffffffffff816101008401958051855260018060a01b0360208201511660208601526040810151604086015260018060a01b0360608201511660608601526001600160401b036080820151166080860152610aae60a082015160a0870190610987565b60c081015160c0860152015116910152565b908060209392818452848401375f828201840152601f01601f1916010190565b805180835260209291819084018484015e5f828201840152601f01601f191601019056fea264697066735822122022c9bc1b3639e56afdd215d01c9602a6b071df5f40a366289eaad65834ab234564736f6c634300081c0033",
+    "sourceMap": "163:4607:187:-:0;;;;;;;;;;;;;-1:-1:-1;;163:4607:187;;;;-1:-1:-1;;;;;163:4607:187;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;163:4607:187;;;;;;;;-1:-1:-1;163:4607:187;;-1:-1:-1;;;;;;163:4607:187;;;;;;;;;;;;;;;;;-1:-1:-1;163:4607:187;;;;;;-1:-1:-1;163:4607:187;;;;;-1:-1:-1;163:4607:187",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x6080806040526004361015610012575f80fd5b5f3560e01c908163240697b614610940575080632bf6cc79146109115780634017c17f146106ac578063511606301461068557806372164a6c1461061f578063affed0e014610602578063c2ea2bf3146101185763e579f50014610074575f80fd5b34610114576020366003190112610114576004355f52600260205261010060405f2080549060018060a01b0360018201541690610108600282015460038301549065ffffffffffff6005600486015495015416946040519687526020870152604086015260018060a01b03811660608601526001600160401b038160a01c16608086015260ff60a086019160e01c16610987565b60c083015260e0820152f35b5f80fd5b34610114576080366003190112610114576004356024356001600160401b0381116101145761014b90369060040161095a565b906044359165ffffffffffff8316809303610114576064356001600160401b0381116101145761017f90369060040161095a565b855f52600360205265ffffffffffff60405f2054166105f3575f546001600160a01b03166001860165ffffffffffff81116105df5765ffffffffffff60405191635485b54960e01b8352166004820152602081602481855afa9081156104ee575f9161059e575b5065ffffffffffff811615159081610582575b5061057357604051602081019088825260408082015261022f8161022160608201898b610ac0565b03601f198101835282610a23565b5190206040519060208201526020815261024a604082610a23565b60405163721bc76960e11b81526004810188905296602088602481865afa9788156104ee575f98610535575b506040516303b0d7b160e31b81526004810182905294602086602481875afa9586156104ee575f966104f9575b509161032c6102f89260ff959461031560209c8d99604051936102c68c86610a23565b5f8552601f198c01368d87013760405163acaa226960e01b815260c060048201529c8d9b8c9a8b9a60c48c0190610ae0565b941660248a01526044890152878303600319016064890152610ac0565b9160848501526003198483030160a4850152610ae0565b03915afa9081156104ee575f916104b8575b50156104a95781606091810103126101145780359081151580920361011457828101356001600160a01b03811691908290036101145760400135906001600160401b038216809203610114576040519160808301918383106001600160401b03841117610495577f0bf426223476d58f384d98805bf2570c769b82ec6e2ccda8886bbf5e3c09f98e956080956001600160401b039460405265ffffffffffff421686528186019081526040860192835260608601938452885f5260038252600165ffffffffffff60405f209751169665ffffffffffff881665ffffffffffff1982541617815582511515815466ff0000000000006701000000000000008560d81b03885160381b169260301b169065ffffffffffff64ffffffffff60d81b011617178155018585511686198254161790556040519586525115159085015260018060a01b03905116604084015251166060820152a2005b634e487b7160e01b5f52604160045260245ffd5b630d08ee4760e31b5f5260045ffd5b90508381813d83116104e7575b6104cf8183610a23565b8101031261011457518015158103610114578561033e565b503d6104c5565b6040513d5f823e3d90fd5b93929095506020843d60201161052d575b8161051760209383610a23565b810103126101145792519491929161032c6102a3565b3d915061050a565b9097506020813d60201161056b575b8161055160209383610a23565b81010312610114575160ff81168103610114579689610276565b3d9150610544565b633ec1610f60e11b5f5260045ffd5b65ffffffffffff915061059490610994565b16421015886101f9565b90506020813d6020116105d7575b816105b960209383610a23565b81010312610114575165ffffffffffff8116810361011457886101e6565b3d91506105ac565b634e487b7160e01b5f52601160045260245ffd5b63251aba6960e11b5f5260045ffd5b34610114575f366003190112610114576020600154604051908152f35b34610114576020366003190112610114576004355f526003602052608060405f206001600160401b0360018254920154166040519165ffffffffffff8116835260ff8160301c161515602084015260018060a01b039060381c1660408301526060820152f35b34610114575f366003190112610114575f546040516001600160a01b039091168152602090f35b346101145760c0366003190112610114576004356024356001600160a01b03811690819003610114576044356064356001600160a01b0381169081900361011457608435936001600160401b0385168095036101145760a43594600286101561011457600154915f1983146105df57600183016001556040519161010083018381106001600160401b03821117610495576040528183526020830191878352604084019787895260608501958787526107b68b608088019580875260a089019d8e5260c089019a848c5260e08a019c8d65ffffffffffff42169052604051966020880198468a5260408901526060880152608087015260a086015260c085015260e0840190610987565b61010082015261010081526107cd61012082610a23565b5190205f8181526002602081905260409091208551815593516001850180546001600160a01b03199081166001600160a01b03938416179091559951858301559551600385018054909a1696169590951780895591519851989097949091908910156108fd5765ffffffffffff88977f7a37329df301808b8ac3daca67b67243924444f5a64e02bb10a901c69579d63f976108f297839560059560209e60ff60e01b9060e01b16916001600160401b0360a01b9060a01b169068ffffffffffffffffff60a01b19161717905551600486015551169201911665ffffffffffff19825416179055837f313874bd5b1cda73bb443bd62cf625061ba13ebe53f553359ff50ce05cacc5a8604051806108e38582610a44565b0390a260405191829182610a44565b0390a2604051908152f35b634e487b7160e01b5f52602160045260245ffd5b346101145760203660031901126101145761092d6004356109b1565b60405160048210156108fd576020918152f35b34610114575f3660031901126101145780612ee060209252f35b9181601f84011215610114578235916001600160401b038311610114576020838186019501011161011457565b9060028210156108fd5752565b65ffffffffffff612ee09116019065ffffffffffff82116105df57565b805f52600360205265ffffffffffff60405f205416610a1d57805f52600260205265ffffffffffff600560405f2001541615610a17575f52600260205265ffffffffffff610a0781600560405f20015416610994565b164211610a12575f90565b600290565b50600390565b50600190565b90601f801991011681019081106001600160401b0382111761049557604052565b91909160e065ffffffffffff816101008401958051855260018060a01b0360208201511660208601526040810151604086015260018060a01b0360608201511660608601526001600160401b036080820151166080860152610aae60a082015160a0870190610987565b60c081015160c0860152015116910152565b908060209392818452848401375f828201840152601f01601f1916010190565b805180835260209291819084018484015e5f828201840152601f01601f191601019056fea264697066735822122022c9bc1b3639e56afdd215d01c9602a6b071df5f40a366289eaad65834ab234564736f6c634300081c0033",
+    "sourceMap": "163:4607:187:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;163:4607:187;;;;;;;;1545:40;163:4607;;;;;;;;;;;;;;;1545:40;;163:4607;;1545:40;163:4607;1545:40;;;163:4607;1545:40;;;163:4607;1545:40;163:4607;1545:40;163:4607;1545:40;;163:4607;1545:40;;163:4607;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;163:4607:187;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;163:4607:187;;;;;;;;-1:-1:-1;;;;;163:4607:187;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;-1:-1:-1;;;;;163:4607:187;;;;;;;;;;;:::i;:::-;;;;3440:9;163:4607;;;;;;;;3436:88;;163:4607;;-1:-1:-1;;;;;163:4607:187;;;;;;;;;;;;;;;;3632:59;;163:4607;;3632:59;;163:4607;;3632:59;163:4607;3632:59;;;;;;;;;163:4607;3632:59;;;163:4607;;;;;3705:29;;:91;;;;163:4607;3701:152;;;163:4607;;;3950:27;;163:4607;;;;;;;;;3950:27;163:4607;;;;;;;;:::i;:::-;3950:27;;;;;;;;;:::i;:::-;163:4607;3940:38;;163:4607;;4040:19;163:4607;4040:19;;163:4607;;4040:19;;;163:4607;4040:19;;:::i;:::-;163:4607;;-1:-1:-1;;;4073:53:187;;163:4607;4073:53;;163:4607;;;;;;;;4073:53;;;;;;;;163:4607;4073:53;;;163:4607;-1:-1:-1;163:4607:187;;-1:-1:-1;;;4140:54:187;;163:4607;4140:54;;163:4607;;;;;;;;4140:54;;;;;;;;163:4607;4140:54;;;163:4607;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;-1:-1:-1;;163:4607:187;;;;;;;;;-1:-1:-1;;;3998:270:187;;163:4607;;3998:270;;163:4607;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;-1:-1:-1;;163:4607:187;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;:::i;:::-;3998:270;;;;;;;;;163:4607;3998:270;;;163:4607;4282:3;;4278:65;;4426:44;163:4607;4426:44;;;163:4607;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;163:4607:187;;;;;;;;;;;;;-1:-1:-1;;;;;163:4607:187;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;163:4607:187;;;;;4736:25;163:4607;;;-1:-1:-1;;;;;163:4607:187;;;;4546:15;163:4607;;;4504:181;;;163:4607;;;;4504:181;;163:4607;;;;4504:181;;163:4607;;;;;;3440:9;163:4607;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;4736:25;163:4607;;;;;;;;;;;;;4278:65;4308:24;;;163:4607;4308:24;163:4607;;4308:24;3998:270;;;;;;;;;;;;;;;;:::i;:::-;;;163:4607;;;;;;;;;;;;3998:270;;;;;;;;;163:4607;;;;;;;;;4140:54;;;;;;163:4607;4140:54;;163:4607;4140:54;;;;;;163:4607;4140:54;;;:::i;:::-;;;163:4607;;;;;;;4140:54;;;163:4607;4140:54;;;;;-1:-1:-1;4140:54:187;;4073:53;;;;163:4607;4073:53;;163:4607;4073:53;;;;;;163:4607;4073:53;;;:::i;:::-;;;163:4607;;;;;;;;;;;;4073:53;;;;;;;-1:-1:-1;4073:53:187;;3701:152;3819:23;;;163:4607;3819:23;163:4607;;3819:23;3705:91;163:4607;3757:39;;;;;:::i;:::-;163:4607;3738:15;:58;;3705:91;;;3632:59;;;163:4607;3632:59;;163:4607;3632:59;;;;;;163:4607;3632:59;;;:::i;:::-;;;163:4607;;;;;;;;;;;;3632:59;;;;;;-1:-1:-1;3632:59:187;;163:4607;;;;;;;;;;;;3436:88;3495:18;;;163:4607;3495:18;163:4607;;3495:18;163:4607;;;;;;-1:-1:-1;;163:4607:187;;;;;1518:20;163:4607;;;;;;;;;;;;;-1:-1:-1;;163:4607:187;;;;;;;;1591:45;163:4607;;;;;;-1:-1:-1;;;;;163:4607:187;;;1591:45;;163:4607;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;163:4607:187;;;;;;;;-1:-1:-1;;;;;163:4607:187;;;;;;;;;;;;;;-1:-1:-1;;163:4607:187;;;;;;;;-1:-1:-1;;;;;163:4607:187;;;;;;;;;;;;-1:-1:-1;;;;;163:4607:187;;;;;;;;;;;-1:-1:-1;;;;;163:4607:187;;;;;;;;;;;;;;;;;;;-1:-1:-1;;163:4607:187;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;163:4607:187;;;;;;;;;;;2451:288;;163:4607;;;;;2451:288;;163:4607;;;;;2451:288;;163:4607;;;;;2451:288;163:4607;2451:288;;163:4607;;;;;2451:288;;163:4607;;;;2451:288;;163:4607;;;;;2451:288;;2712:15;;163:4607;2712:15;163:4607;;;;;2853:94;163:4607;2853:94;;2864:13;;163:4607;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;2853:94;;;;;;:::i;:::-;163:4607;2830:127;;163:4607;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;;163:4607:187;;;-1:-1:-1;;;;;163:4607:187;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2830:127;;163:4607;;;;;;;;;;;;3041:24;163:4607;3041:24;163:4607;;;;;;;;;;;;;;;-1:-1:-1;;;;;163:4607:187;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;3003:23;163:4607;;3003:23;;;;;:::i;:::-;;;;163:4607;;3041:24;;;;;:::i;:::-;;;;163:4607;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;163:4607:187;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;163:4607:187;;;;;1471:5;163:4607;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;163:4607:187;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;:::o;:::-;;;;;;;;;;;;:::o;1736:428::-;163:4607;;;1822:9;163:4607;;;;;;;;1818:90;;163:4607;;;1921:5;163:4607;;;1921:23;163:4607;;;1921:23;163:4607;;1921:28;1917:86;;163:4607;;1921:5;163:4607;;;2034:37;163:4607;1921:23;163:4607;;;2034:23;163:4607;;2034:37;:::i;:::-;163:4607;2016:15;:55;2012:111;;163:4607;1736:428;:::o;2012:111::-;1921:5;2087:25;:::o;1917:86::-;1965:27;1822:9;1965:27;:::o;1818:90::-;1870:27;1877:20;1870:27;:::o;163:4607::-;;;3950:27;;163:4607;;;;;;;;-1:-1:-1;;;;;163:4607:187;;;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;163:4607:187;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;-1:-1:-1;163:4607:187;;;;;;;;-1:-1:-1;;163:4607:187;;;;:::o;:::-;;;;;;;;;;;;;;;;;-1:-1:-1;163:4607:187;;;;;;;;-1:-1:-1;;163:4607:187;;;;:::o",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "TASK_EXPIRY()": "240697b6",
+    "createTask(uint256,address,uint256,address,uint64,uint8)": "4017c17f",
+    "getTaskStatus(bytes32)": "2bf6cc79",
+    "nonce()": "affed0e0",
+    "respondTask(bytes32,bytes,uint48,bytes)": "c2ea2bf3",
+    "responses(bytes32)": "72164a6c",
+    "settlement()": "51160630",
+    "tasks(bytes32)": "e579f500"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.28+commit.7893614a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_settlement\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"AlreadyResponded\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidQuorumSignature\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidVerifyingEpoch\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"taskId\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"chainId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"collection\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"uint64\",\"name\":\"checkedBlock\",\"type\":\"uint64\"},{\"internalType\":\"enum NftOwnershipTask.Standard\",\"name\":\"standard\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"},{\"internalType\":\"uint48\",\"name\":\"createdAt\",\"type\":\"uint48\"}],\"indexed\":false,\"internalType\":\"struct NftOwnershipTask.Request\",\"name\":\"req\",\"type\":\"tuple\"}],\"name\":\"CreateTask\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"taskId\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"uint48\",\"name\":\"answeredAt\",\"type\":\"uint48\"},{\"internalType\":\"bool\",\"name\":\"isOwner\",\"type\":\"bool\"},{\"internalType\":\"address\",\"name\":\"ownerAtBlock\",\"type\":\"address\"},{\"internalType\":\"uint64\",\"name\":\"observedBlock\",\"type\":\"uint64\"}],\"indexed\":false,\"internalType\":\"struct NftOwnershipTask.Response\",\"name\":\"response\",\"type\":\"tuple\"}],\"name\":\"RespondTask\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"taskId\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"chainId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"collection\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"uint64\",\"name\":\"checkedBlock\",\"type\":\"uint64\"},{\"internalType\":\"enum NftOwnershipTask.Standard\",\"name\":\"standard\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"},{\"internalType\":\"uint48\",\"name\":\"createdAt\",\"type\":\"uint48\"}],\"indexed\":false,\"internalType\":\"struct NftOwnershipTask.Request\",\"name\":\"req\",\"type\":\"tuple\"}],\"name\":\"TaskCreated\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"TASK_EXPIRY\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"chainId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"collection\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"uint64\",\"name\":\"checkedBlock\",\"type\":\"uint64\"},{\"internalType\":\"enum NftOwnershipTask.Standard\",\"name\":\"standard\",\"type\":\"uint8\"}],\"name\":\"createTask\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"taskId\",\"type\":\"bytes32\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"taskId\",\"type\":\"bytes32\"}],\"name\":\"getTaskStatus\",\"outputs\":[{\"internalType\":\"enum NftOwnershipTask.TaskStatus\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"nonce\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"taskId\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"payload\",\"type\":\"bytes\"},{\"internalType\":\"uint48\",\"name\":\"epoch\",\"type\":\"uint48\"},{\"internalType\":\"bytes\",\"name\":\"proof\",\"type\":\"bytes\"}],\"name\":\"respondTask\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"responses\",\"outputs\":[{\"internalType\":\"uint48\",\"name\":\"answeredAt\",\"type\":\"uint48\"},{\"internalType\":\"bool\",\"name\":\"isOwner\",\"type\":\"bool\"},{\"internalType\":\"address\",\"name\":\"ownerAtBlock\",\"type\":\"address\"},{\"internalType\":\"uint64\",\"name\":\"observedBlock\",\"type\":\"uint64\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"settlement\",\"outputs\":[{\"internalType\":\"contract ISettlement\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"tasks\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"chainId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"collection\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"uint64\",\"name\":\"checkedBlock\",\"type\":\"uint64\"},{\"internalType\":\"enum NftOwnershipTask.Standard\",\"name\":\"standard\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"},{\"internalType\":\"uint48\",\"name\":\"createdAt\",\"type\":\"uint48\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"events\":{\"CreateTask(bytes32,(uint256,address,uint256,address,uint64,uint8,uint256,uint48))\":{\"notice\":\"Emitted on task creation (kept close to SumTask style).\"},\"TaskCreated(bytes32,(uint256,address,uint256,address,uint64,uint8,uint256,uint48))\":{\"notice\":\"Duplicate event name many clients expect in examples.\"}},\"kind\":\"user\",\"methods\":{\"respondTask(bytes32,bytes,uint48,bytes)\":{\"notice\":\"Store an attested result after settlement verification. The off-chain node signs `abi.encode(taskId, payload)` where `payload = abi.encode(bool isOwner, address ownerAtBlock, uint64 observedBlock)`.\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/NftOwnershipTask.sol\":\"NftOwnershipTask\"},\"evmVersion\":\"prague\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/\",\":@symbioticfi/core-contracts/=node_modules/@symbioticfi/core/\",\":@symbioticfi/relay-contracts/=node_modules/@symbioticfi/relay-contracts/src/\",\":forge-std/=lib/forge-std/src/\",\"node_modules/@symbioticfi/relay-contracts:@openzeppelin/contracts-upgradeable/=node_modules/@symbioticfi/relay-contracts/node_modules/@openzeppelin/contracts-upgradeable/\",\"node_modules/@symbioticfi/relay-contracts:@openzeppelin/contracts/=node_modules/@symbioticfi/relay-contracts/node_modules/@openzeppelin/contracts/\",\"node_modules/@symbioticfi/relay-contracts:@symbioticfi/core/=node_modules/@symbioticfi/relay-contracts/node_modules/@symbioticfi/core/\",\"node_modules/@symbioticfi/relay-contracts:@symbioticfi/rewards/=node_modules/@symbioticfi/rewards/\"],\"viaIR\":true},\"sources\":{\"node_modules/@symbioticfi/relay-contracts/node_modules/@openzeppelin/contracts/interfaces/IERC5267.sol\":{\"keccak256\":\"0x92aa1df62dc3d33f1656d63bede0923e0df0b706ad4137c8b10b0a8fe549fd92\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://c5c0f29195ad64cbe556da8e257dac8f05f78c53f90323c0d2accf8e6922d33a\",\"dweb:/ipfs/QmQ61TED8uaCZwcbh8KkgRSsCav7x7HbcGHwHts3U4DmUP\"]},\"node_modules/@symbioticfi/relay-contracts/node_modules/@openzeppelin/contracts/utils/Panic.sol\":{\"keccak256\":\"0xf7fe324703a64fc51702311dc51562d5cb1497734f074e4f483bfb6717572d7a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://c6a5ff4f9fd8649b7ee20800b7fa387d3465bd77cf20c2d1068cd5c98e1ed57a\",\"dweb:/ipfs/QmVSaVJf9FXFhdYEYeCEfjMVHrxDh5qL4CGkxdMWpQCrqG\"]},\"node_modules/@symbioticfi/relay-contracts/node_modules/@openzeppelin/contracts/utils/math/Math.sol\":{\"keccak256\":\"0xa00be322d7db5786750ce0ac7e2f5b633ac30a5ed5fa1ced1e74acfc19acecea\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6c84e822f87cbdc4082533b626667b6928715bb2b1e8e7eb96954cebb9e38c8d\",\"dweb:/ipfs/QmZmy9dgxLTerBAQDuuHqbL6EpgRxddqgv5KmwpXYVbKz1\"]},\"node_modules/@symbioticfi/relay-contracts/node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol\":{\"keccak256\":\"0x195533c86d0ef72bcc06456a4f66a9b941f38eb403739b00f21fd7c1abd1ae54\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b1d578337048cad08c1c03041cca5978eff5428aa130c781b271ad9e5566e1f8\",\"dweb:/ipfs/QmPFKL2r9CBsMwmUqqdcFPfHZB2qcs9g1HDrPxzWSxomvy\"]},\"node_modules/@symbioticfi/relay-contracts/node_modules/@openzeppelin/contracts/utils/structs/Checkpoints.sol\":{\"keccak256\":\"0x66364cd3247ea71cdb58f080f5d5ed6732433a8001413139661841535494692f\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://0f87914c6645b58eaf75f00a156037a7da91129f3a56aec44aebfc715b19ea44\",\"dweb:/ipfs/QmNX7NLSMXyWuogvf8wfCwjUGwLhLBZrGktWPSdoHtERGp\"]},\"node_modules/@symbioticfi/relay-contracts/src/contracts/libraries/structs/Checkpoints.sol\":{\"keccak256\":\"0xf79e6decc9bc7e75a4a7bd7e5a6da6550e0b173431af1fae915242b212c1f75a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://9f51eda8c045e3af7d1968edc6ea0e4e96d63506708d888cf858e8a262f800b7\",\"dweb:/ipfs/QmXicETDzKkjPYZUhM6RpucBJ7WUaTm84D2ubacm6pWnuJ\"]},\"node_modules/@symbioticfi/relay-contracts/src/interfaces/modules/base/INetworkManager.sol\":{\"keccak256\":\"0x035841d7666c1c01a15c40b91025b76564dfbe374c9df851879356df487334f9\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://07f8513aa71a1b8dfa557972b67a920a38ebeb99b7157d32e5f876745d40010e\",\"dweb:/ipfs/QmNh6PXoju2QN44JQGvPZgSzRBru7cPWbQyUtdRNyztAnb\"]},\"node_modules/@symbioticfi/relay-contracts/src/interfaces/modules/base/IOzEIP712.sol\":{\"keccak256\":\"0xe072fddeabfe39f026d66333aeca2f9bcd8f9c3ea4de05cdfcfe9bba408359e3\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b5c8faaa2132491cb05756d5e82412da2abcba04b766fbea812a3c5bd272e0fc\",\"dweb:/ipfs/QmUXYK7YcUvmEANDDtPncGELZZvQzTG5Rv9X1uMukxCrbz\"]},\"node_modules/@symbioticfi/relay-contracts/src/interfaces/modules/settlement/ISettlement.sol\":{\"keccak256\":\"0xf1807bd15b7185b2578fe6d174c515e44ae446dd050df07c77058425bfb6f4c6\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://24ba09323b7f955536716e12022e054cc0c6aa5a6d0fc621bef93578178f081c\",\"dweb:/ipfs/QmZQrzb3WoNmzJYyFcT1bV9JxojzsNEhhQ5qLwrrzgqxXg\"]},\"src/NftOwnershipTask.sol\":{\"keccak256\":\"0xc9de6a95464a6ec311f66a17138b055e0c8520ec44f0d4ac893a13576fcec63f\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://f616e816ada5cacf9912120cec1027d6d61f3d26ba197807f20a7ec07127686c\",\"dweb:/ipfs/QmXoP6VyLHmUTqsXisQkvjkRbyfCfijfbr1NWFZdJ3La6n\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": { "version": "0.8.28+commit.7893614a" },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_settlement",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "constructor"
+        },
+        { "inputs": [], "type": "error", "name": "AlreadyResponded" },
+        { "inputs": [], "type": "error", "name": "InvalidQuorumSignature" },
+        { "inputs": [], "type": "error", "name": "InvalidVerifyingEpoch" },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "taskId",
+              "type": "bytes32",
+              "indexed": true
+            },
+            {
+              "internalType": "struct NftOwnershipTask.Request",
+              "name": "req",
+              "type": "tuple",
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "chainId",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "address",
+                  "name": "collection",
+                  "type": "address"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "tokenId",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "address",
+                  "name": "owner",
+                  "type": "address"
+                },
+                {
+                  "internalType": "uint64",
+                  "name": "checkedBlock",
+                  "type": "uint64"
+                },
+                {
+                  "internalType": "enum NftOwnershipTask.Standard",
+                  "name": "standard",
+                  "type": "uint8"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "nonce",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint48",
+                  "name": "createdAt",
+                  "type": "uint48"
+                }
+              ],
+              "indexed": false
+            }
+          ],
+          "type": "event",
+          "name": "CreateTask",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "taskId",
+              "type": "bytes32",
+              "indexed": true
+            },
+            {
+              "internalType": "struct NftOwnershipTask.Response",
+              "name": "response",
+              "type": "tuple",
+              "components": [
+                {
+                  "internalType": "uint48",
+                  "name": "answeredAt",
+                  "type": "uint48"
+                },
+                { "internalType": "bool", "name": "isOwner", "type": "bool" },
+                {
+                  "internalType": "address",
+                  "name": "ownerAtBlock",
+                  "type": "address"
+                },
+                {
+                  "internalType": "uint64",
+                  "name": "observedBlock",
+                  "type": "uint64"
+                }
+              ],
+              "indexed": false
+            }
+          ],
+          "type": "event",
+          "name": "RespondTask",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "taskId",
+              "type": "bytes32",
+              "indexed": true
+            },
+            {
+              "internalType": "struct NftOwnershipTask.Request",
+              "name": "req",
+              "type": "tuple",
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "chainId",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "address",
+                  "name": "collection",
+                  "type": "address"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "tokenId",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "address",
+                  "name": "owner",
+                  "type": "address"
+                },
+                {
+                  "internalType": "uint64",
+                  "name": "checkedBlock",
+                  "type": "uint64"
+                },
+                {
+                  "internalType": "enum NftOwnershipTask.Standard",
+                  "name": "standard",
+                  "type": "uint8"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "nonce",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint48",
+                  "name": "createdAt",
+                  "type": "uint48"
+                }
+              ],
+              "indexed": false
+            }
+          ],
+          "type": "event",
+          "name": "TaskCreated",
+          "anonymous": false
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "TASK_EXPIRY",
+          "outputs": [
+            { "internalType": "uint32", "name": "", "type": "uint32" }
+          ]
+        },
+        {
+          "inputs": [
+            { "internalType": "uint256", "name": "chainId", "type": "uint256" },
+            {
+              "internalType": "address",
+              "name": "collection",
+              "type": "address"
+            },
+            { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+            { "internalType": "address", "name": "owner", "type": "address" },
+            {
+              "internalType": "uint64",
+              "name": "checkedBlock",
+              "type": "uint64"
+            },
+            {
+              "internalType": "enum NftOwnershipTask.Standard",
+              "name": "standard",
+              "type": "uint8"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "createTask",
+          "outputs": [
+            { "internalType": "bytes32", "name": "taskId", "type": "bytes32" }
+          ]
+        },
+        {
+          "inputs": [
+            { "internalType": "bytes32", "name": "taskId", "type": "bytes32" }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "getTaskStatus",
+          "outputs": [
+            {
+              "internalType": "enum NftOwnershipTask.TaskStatus",
+              "name": "",
+              "type": "uint8"
+            }
+          ]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "nonce",
+          "outputs": [
+            { "internalType": "uint256", "name": "", "type": "uint256" }
+          ]
+        },
+        {
+          "inputs": [
+            { "internalType": "bytes32", "name": "taskId", "type": "bytes32" },
+            { "internalType": "bytes", "name": "payload", "type": "bytes" },
+            { "internalType": "uint48", "name": "epoch", "type": "uint48" },
+            { "internalType": "bytes", "name": "proof", "type": "bytes" }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "respondTask"
+        },
+        {
+          "inputs": [
+            { "internalType": "bytes32", "name": "", "type": "bytes32" }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "responses",
+          "outputs": [
+            {
+              "internalType": "uint48",
+              "name": "answeredAt",
+              "type": "uint48"
+            },
+            { "internalType": "bool", "name": "isOwner", "type": "bool" },
+            {
+              "internalType": "address",
+              "name": "ownerAtBlock",
+              "type": "address"
+            },
+            {
+              "internalType": "uint64",
+              "name": "observedBlock",
+              "type": "uint64"
+            }
+          ]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "settlement",
+          "outputs": [
+            {
+              "internalType": "contract ISettlement",
+              "name": "",
+              "type": "address"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            { "internalType": "bytes32", "name": "", "type": "bytes32" }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "tasks",
+          "outputs": [
+            { "internalType": "uint256", "name": "chainId", "type": "uint256" },
+            {
+              "internalType": "address",
+              "name": "collection",
+              "type": "address"
+            },
+            { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+            { "internalType": "address", "name": "owner", "type": "address" },
+            {
+              "internalType": "uint64",
+              "name": "checkedBlock",
+              "type": "uint64"
+            },
+            {
+              "internalType": "enum NftOwnershipTask.Standard",
+              "name": "standard",
+              "type": "uint8"
+            },
+            { "internalType": "uint256", "name": "nonce", "type": "uint256" },
+            { "internalType": "uint48", "name": "createdAt", "type": "uint48" }
+          ]
+        }
+      ],
+      "devdoc": { "kind": "dev", "methods": {}, "version": 1 },
+      "userdoc": {
+        "kind": "user",
+        "methods": {
+          "respondTask(bytes32,bytes,uint48,bytes)": {
+            "notice": "Store an attested result after settlement verification. The off-chain node signs `abi.encode(taskId, payload)` where `payload = abi.encode(bool isOwner, address ownerAtBlock, uint64 observedBlock)`."
+          }
+        },
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        "@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+        "@symbioticfi/core-contracts/=node_modules/@symbioticfi/core/",
+        "@symbioticfi/relay-contracts/=node_modules/@symbioticfi/relay-contracts/src/",
+        "forge-std/=lib/forge-std/src/",
+        "node_modules/@symbioticfi/relay-contracts:@openzeppelin/contracts-upgradeable/=node_modules/@symbioticfi/relay-contracts/node_modules/@openzeppelin/contracts-upgradeable/",
+        "node_modules/@symbioticfi/relay-contracts:@openzeppelin/contracts/=node_modules/@symbioticfi/relay-contracts/node_modules/@openzeppelin/contracts/",
+        "node_modules/@symbioticfi/relay-contracts:@symbioticfi/core/=node_modules/@symbioticfi/relay-contracts/node_modules/@symbioticfi/core/",
+        "node_modules/@symbioticfi/relay-contracts:@symbioticfi/rewards/=node_modules/@symbioticfi/rewards/"
+      ],
+      "optimizer": { "enabled": true, "runs": 200 },
+      "metadata": { "bytecodeHash": "ipfs" },
+      "compilationTarget": { "src/NftOwnershipTask.sol": "NftOwnershipTask" },
+      "evmVersion": "prague",
+      "libraries": {},
+      "viaIR": true
+    },
+    "sources": {
+      "node_modules/@symbioticfi/relay-contracts/node_modules/@openzeppelin/contracts/interfaces/IERC5267.sol": {
+        "keccak256": "0x92aa1df62dc3d33f1656d63bede0923e0df0b706ad4137c8b10b0a8fe549fd92",
+        "urls": [
+          "bzz-raw://c5c0f29195ad64cbe556da8e257dac8f05f78c53f90323c0d2accf8e6922d33a",
+          "dweb:/ipfs/QmQ61TED8uaCZwcbh8KkgRSsCav7x7HbcGHwHts3U4DmUP"
+        ],
+        "license": "MIT"
+      },
+      "node_modules/@symbioticfi/relay-contracts/node_modules/@openzeppelin/contracts/utils/Panic.sol": {
+        "keccak256": "0xf7fe324703a64fc51702311dc51562d5cb1497734f074e4f483bfb6717572d7a",
+        "urls": [
+          "bzz-raw://c6a5ff4f9fd8649b7ee20800b7fa387d3465bd77cf20c2d1068cd5c98e1ed57a",
+          "dweb:/ipfs/QmVSaVJf9FXFhdYEYeCEfjMVHrxDh5qL4CGkxdMWpQCrqG"
+        ],
+        "license": "MIT"
+      },
+      "node_modules/@symbioticfi/relay-contracts/node_modules/@openzeppelin/contracts/utils/math/Math.sol": {
+        "keccak256": "0xa00be322d7db5786750ce0ac7e2f5b633ac30a5ed5fa1ced1e74acfc19acecea",
+        "urls": [
+          "bzz-raw://6c84e822f87cbdc4082533b626667b6928715bb2b1e8e7eb96954cebb9e38c8d",
+          "dweb:/ipfs/QmZmy9dgxLTerBAQDuuHqbL6EpgRxddqgv5KmwpXYVbKz1"
+        ],
+        "license": "MIT"
+      },
+      "node_modules/@symbioticfi/relay-contracts/node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol": {
+        "keccak256": "0x195533c86d0ef72bcc06456a4f66a9b941f38eb403739b00f21fd7c1abd1ae54",
+        "urls": [
+          "bzz-raw://b1d578337048cad08c1c03041cca5978eff5428aa130c781b271ad9e5566e1f8",
+          "dweb:/ipfs/QmPFKL2r9CBsMwmUqqdcFPfHZB2qcs9g1HDrPxzWSxomvy"
+        ],
+        "license": "MIT"
+      },
+      "node_modules/@symbioticfi/relay-contracts/node_modules/@openzeppelin/contracts/utils/structs/Checkpoints.sol": {
+        "keccak256": "0x66364cd3247ea71cdb58f080f5d5ed6732433a8001413139661841535494692f",
+        "urls": [
+          "bzz-raw://0f87914c6645b58eaf75f00a156037a7da91129f3a56aec44aebfc715b19ea44",
+          "dweb:/ipfs/QmNX7NLSMXyWuogvf8wfCwjUGwLhLBZrGktWPSdoHtERGp"
+        ],
+        "license": "MIT"
+      },
+      "node_modules/@symbioticfi/relay-contracts/src/contracts/libraries/structs/Checkpoints.sol": {
+        "keccak256": "0xf79e6decc9bc7e75a4a7bd7e5a6da6550e0b173431af1fae915242b212c1f75a",
+        "urls": [
+          "bzz-raw://9f51eda8c045e3af7d1968edc6ea0e4e96d63506708d888cf858e8a262f800b7",
+          "dweb:/ipfs/QmXicETDzKkjPYZUhM6RpucBJ7WUaTm84D2ubacm6pWnuJ"
+        ],
+        "license": "MIT"
+      },
+      "node_modules/@symbioticfi/relay-contracts/src/interfaces/modules/base/INetworkManager.sol": {
+        "keccak256": "0x035841d7666c1c01a15c40b91025b76564dfbe374c9df851879356df487334f9",
+        "urls": [
+          "bzz-raw://07f8513aa71a1b8dfa557972b67a920a38ebeb99b7157d32e5f876745d40010e",
+          "dweb:/ipfs/QmNh6PXoju2QN44JQGvPZgSzRBru7cPWbQyUtdRNyztAnb"
+        ],
+        "license": "MIT"
+      },
+      "node_modules/@symbioticfi/relay-contracts/src/interfaces/modules/base/IOzEIP712.sol": {
+        "keccak256": "0xe072fddeabfe39f026d66333aeca2f9bcd8f9c3ea4de05cdfcfe9bba408359e3",
+        "urls": [
+          "bzz-raw://b5c8faaa2132491cb05756d5e82412da2abcba04b766fbea812a3c5bd272e0fc",
+          "dweb:/ipfs/QmUXYK7YcUvmEANDDtPncGELZZvQzTG5Rv9X1uMukxCrbz"
+        ],
+        "license": "MIT"
+      },
+      "node_modules/@symbioticfi/relay-contracts/src/interfaces/modules/settlement/ISettlement.sol": {
+        "keccak256": "0xf1807bd15b7185b2578fe6d174c515e44ae446dd050df07c77058425bfb6f4c6",
+        "urls": [
+          "bzz-raw://24ba09323b7f955536716e12022e054cc0c6aa5a6d0fc621bef93578178f081c",
+          "dweb:/ipfs/QmZQrzb3WoNmzJYyFcT1bV9JxojzsNEhhQ5qLwrrzgqxXg"
+        ],
+        "license": "MIT"
+      },
+      "src/NftOwnershipTask.sol": {
+        "keccak256": "0xc9de6a95464a6ec311f66a17138b055e0c8520ec44f0d4ac893a13576fcec63f",
+        "urls": [
+          "bzz-raw://f616e816ada5cacf9912120cec1027d6d61f3d26ba197807f20a7ec07127686c",
+          "dweb:/ipfs/QmXoP6VyLHmUTqsXisQkvjkRbyfCfijfbr1NWFZdJ3La6n"
+        ],
+        "license": "MIT"
+      }
+    },
+    "version": 1
+  },
+  "id": 187
+}
