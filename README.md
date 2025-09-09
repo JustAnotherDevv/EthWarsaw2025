@@ -35,3 +35,7 @@ User Journer:
 Currently the user has to manually input development private key for wallet with gollem db testnet tokens because of golem db sdk limitations.
 
 ## Symbiotic
+
+Symbiotic integration is a fork of sum task example. It is being used for access control and allows automatic cross-chain verification of NFT ownership to verify if specified user currently owns NFT on other chain
+
+#symbiotic
